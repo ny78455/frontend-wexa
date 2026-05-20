@@ -11,8 +11,12 @@ import WebSocket from "ws"; // <--- ADD THIS LINE
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Check if import.meta exists (ESM) or fallback to native variables (CommonJS)
+const _filename = typeof __filename !== 'undefined' ? __filename : fileURLToPath(import.meta.url);
+const _dirname = typeof __dirname !== 'undefined' ? __dirname : dirname(_filename);
 
 // Supabase Setup
 // Table requirements:
